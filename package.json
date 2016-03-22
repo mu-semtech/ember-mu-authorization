@@ -1,6 +1,6 @@
 {
   "name": "mu-addon-authorization",
-  "version": "0.0.0",
+  "version": "0.0.6",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
@@ -41,7 +41,9 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.5"
+    "ember-cli-babel": "^5.1.5",
+    "ember-cli-htmlbars": "^1.0.1",
+    "ember-cli-htmlbars-inline-precompile": "^0.3.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

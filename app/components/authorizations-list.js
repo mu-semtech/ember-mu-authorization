@@ -1,0 +1,1 @@
+export { default } from 'mu-addon-authorization/components/authorizations-list';

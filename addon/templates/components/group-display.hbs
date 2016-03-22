@@ -1,0 +1,125 @@
+<h5>Group: {{group.name}}</h5>
+<br>
+<h7>Id: {{group.id}}</h7>
+{{#md-collection content=group.users
+  header='group members' as |member|}}
+  <div class='collection-item'>
+    {{member.name}}
+    {{md-btn-submit icon='mdi-content-remove'
+    iconPosition='right'
+    text='remove'
+    action='removeUser'
+    class='indigo secondary-content'
+    actionArg=member
+    }}
+  </div>
+{{/md-collection}}
+{{#md-collection content=group.subGroups
+  header='sub-groups' as |group|}}
+  <div class='collection-item'>
+    {{group.name}}
+    {{md-btn-submit icon='mdi-content-remove'
+    iconPosition='right'
+    text='remove'
+    action='removeSubGroup'
+    class='indigo secondary-content'
+    actionArg=group
+    }}
+  </div>
+{{/md-collection}}
+{{#md-collection content=group.parentGroups
+  header='parent-groups' as |group|}}
+  <div class='collection-item'>
+    {{group.name}}
+  </div>
+{{/md-collection}}
+{{#md-card-collapsible }}
+    {{#md-collapsible icon="mdi-image-timer-auto" title="add users"}}
+      {{#if noMoreAddableUsers}}
+        <i>no more addable users</i>
+      {{else}}
+        {{#md-collection content=addableUsers as |user|}}
+          <div class='collection-item'>
+            {{user.name}}
+            {{md-btn-submit icon='mdi-content-add'
+            iconPosition='right'
+            text='add user to group'
+            action='addUser'
+            class='indigo secondary-content'
+            actionArg=user
+            }}
+          </div>
+        {{/md-collection}}
+      {{/if}}
+    {{/md-collapsible}}
+    {{#md-collapsible icon="mdi-image-nature-people" title="add subgroups"}}
+      {{#if noMoreAddableSubGroups}}
+        <i>no more addable subgroups</i>
+      {{else}}
+        {{#md-collection content=addableSubGroups as |group|}}
+          <div class='collection-item'>
+            {{group.name}}
+            {{md-btn-submit icon='mdi-content-add'
+            iconPosition='right'
+            text='add subgroup to group'
+            action='addSubGroup'
+            class='indigo secondary-content'
+            actionArg=group
+            }}
+          </div>
+        {{/md-collection}}
+      {{/if}}
+    {{/md-collapsible}}
+    {{#md-collapsible icon="mdi-image-filter-drama" title="can create's"}}
+      {{#if noCreateAuthorizations}}
+        <i>no can create authorizations for this group</i>
+      {{else}}
+        {{#md-collection content=group.canCreate as |create|}}
+          <div class='collection-item'>
+            {{create.name}}
+          </div>
+        {{/md-collection}}
+      {{/if}}
+    {{/md-collapsible}}
+    {{#md-collapsible icon="mdi-image-flash-on" title="can delete's"}}
+      {{#if noDeleteAuthorizations}}
+        <i>no can delete authorizations for this group</i>
+      {{else}}
+        {{#md-collection content=group.canDelete as |delete|}}
+          <div class='collection-item'>
+            {{delete.name}}
+          </div>
+        {{/md-collection}}
+      {{/if}}
+    {{/md-collapsible}}
+    {{#md-collapsible icon="mdi-image-remove-red-eye" title="can read's"}}
+      {{#if noWriteAuthorizations}}
+        <i>no can read authorizations for this group</i>
+      {{else}}
+        {{#md-collection content=group.canRead as |read|}}
+          <div class='collection-item'>
+            {{read.name}}
+          </div>
+        {{/md-collection}}
+      {{/if}}
+    {{/md-collapsible}}
+    {{#md-collapsible icon="mdi-image-wb-cloudy" title="can write's"}}
+      {{#if noReadAuthorizations}}
+        <i>no can write authorizations for this group</i>
+      {{else}}
+        {{#md-collection content=group.canWrite as |write|}}
+          <div class='collection-item'>
+            {{write.name}}
+          </div>
+        {{/md-collection}}
+      {{/if}}
+    {{/md-collapsible}}
+{{/md-card-collapsible}}
+
+{{md-btn-submit icon='mdi-content-send'
+iconPosition='right'
+text='manage authorizations'
+action='manageAuthorizations'
+class='indigo secondary-content'
+}}
+

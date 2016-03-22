@@ -1,0 +1,132 @@
+<div style="width:100%;display:block;">
+  <h5>{{authority.name}}</h5>
+  <h7>id: {{authority.id}}</h7>
+</div>
+<div style="width:49%;display:inline-block;">
+  {{#md-collection content=authority.canCreate
+    header='current create authorizations' as |auth|}}
+    <div class='collection-item'>
+      {{auth.name}}
+      {{md-btn-submit icon='mdi-content-delete'
+      iconPosition='right'
+      text='disallow read'
+      action='removeCreateAuthorization'
+      class='indigo secondary-content'
+      actionArg=auth
+      }}
+
+    </div>
+  {{/md-collection}}
+
+    {{#md-collection content=createAddables
+      header='add create authorizations' as |auth|}}
+      <div class='collection-item'>
+        {{auth.name}}
+
+       {{md-btn-submit icon='mdi-content-add'
+       iconPosition='right'
+       text='allow create'
+       action='addCreateAuthorization'
+       class='indigo secondary-content'
+       actionArg=auth
+       }}
+
+      </div>
+    {{/md-collection}}
+</div>
+<div style="width:49%;display:inline-block;">
+  {{#md-collection content=authority.canDelete
+    header='current delete authorizations' as |auth|}}
+    <div class='collection-item'>
+      {{auth.name}}
+      {{md-btn-submit icon='mdi-content-delete'
+      iconPosition='right'
+      text='disallow update'
+      action='removeDeleteAuthorization'
+      class='indigo secondary-content'
+      actionArg=auth
+      }}
+    </div>
+  {{/md-collection}}
+
+    {{#md-collection content=deleteAddables
+      header='add delete authorizations' as |auth|}}
+      <div class='collection-item'>
+        {{auth.name}}
+
+       {{md-btn-submit icon='mdi-content-add'
+       iconPosition='right'
+       text='allow delete'
+       action='addDeleteAuthorization'
+       class='indigo secondary-content'
+       actionArg=auth
+       }}
+
+      </div>
+    {{/md-collection}}
+</div>
+<div style="width:49%;display:inline-block;">
+  {{#md-collection content=authority.canRead
+    header='current read authorizations' as |auth|}}
+    <div class='collection-item'>
+      {{auth.name}}
+      {{md-btn-submit icon='mdi-content-delete'
+      iconPosition='right'
+      text='disallow read'
+      action='removeReadAuthorization'
+      class='indigo secondary-content'
+      actionArg=auth
+      }}
+
+    </div>
+  {{/md-collection}}
+
+    {{#md-collection content=readAddables
+      header='add read authorizations' as |auth|}}
+      <div class='collection-item'>
+        {{auth.name}}
+
+       {{md-btn-submit icon='mdi-content-add'
+       iconPosition='right'
+       text='allow read'
+       action='addReadAuthorization'
+       class='indigo secondary-content'
+       actionArg=auth
+       }}
+
+      </div>
+    {{/md-collection}}
+
+</div>
+<div style="width:49%;display:inline-block;">
+  {{#md-collection content=authority.canWrite
+    header='current write authorizations' as |auth|}}
+    <div class='collection-item'>
+      {{auth.name}}
+      {{md-btn-submit icon='mdi-content-delete'
+      iconPosition='right'
+      text='disallow write'
+      action='removeWriteAuthorization'
+      class='indigo secondary-content'
+      actionArg=auth
+      }}
+    </div>
+  {{/md-collection}}
+
+    {{#md-collection content=writeAddables
+      header='add write authorizations' as |auth|}}
+      <div class='collection-item'>
+        {{auth.name}}
+
+       {{md-btn-submit icon='mdi-content-add'
+       iconPosition='right'
+       text='allow write'
+       action= 'addWriteAuthorization'
+       class='indigo secondary-content'
+       actionArg=auth
+       }}
+
+      </div>
+    {{/md-collection}}
+
+</div>
