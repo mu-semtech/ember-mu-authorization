@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:group-detail', 'Unit | Route | group detail', {
+moduleFor('route:manage-group-authorizations', 'Unit | Route | manage group authorizations', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });
