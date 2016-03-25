@@ -1,0 +1,12 @@
+<h5>Users</h5>
+<table>
+{{#each users as |user|}}
+<tr>
+  <td>{{user.name}}</td>
+  <td><button {{action "openUserDetail" user}}>detail</button></td>
+  <td><button {{action "removeUser" user}}>remove</button></td>
+</tr>
+{{/each}}
+</table>
+
+<button {{action "openNewUser"}}>new user</button>

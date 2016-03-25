@@ -1,0 +1,46 @@
+{{#if isScreen0Active}}
+<button {{action "moveToScreen" "0"}}>GROUPS</button>
+<button {{action "moveToScreen" "1"}}>USERS</button>
+
+{{groups-list openGroupDetail=(action "openGroupDetail")
+	      openNewGroup=(action "openNewGroup")}}
+
+{{/if}}
+
+{{#if isScreen1Active}}
+<button {{action "moveToScreen" "0"}}>GROUPS</button>
+<button {{action "moveToScreen" "1"}}>USERS</button>
+	
+{{users-list openUserDetail=(action "openUserDetail")
+	      openNewUser=(action "openNewUser")}}	
+{{/if}}
+
+{{#if isScreen2Active}}
+<button {{action "moveToScreen" "0"}}>back</button>
+{{group-display group=currentModel manageAuthorizationsGroup=(action "manageAuthorizationsGroup")}}
+{{/if}}
+
+{{#if isScreen3Active}}
+<button {{action "moveToScreen" "1"}}>back</button>
+{{user-display user=currentModel manageAuthorizationsUser=(action "manageAuthorizationsUser")}}
+{{/if}}
+
+{{#if isScreen4Active}}
+<button {{action "moveToScreen" "2"}}>back</button>
+{{authorizations-list authority=currentModel}}
+{{/if}}
+
+{{#if isScreen5Active}}
+<button {{action "moveToScreen" "3"}}>back</button>
+{{authorizations-list authority=currentModel}}
+{{/if}}
+
+{{#if isScreen6Active}}
+<button {{action "moveToScreen" "0"}}>back</button>
+{{new-group moveToScreen=(action "moveToScreen")}}	
+{{/if}}
+
+{{#if isScreen7Active}}
+<button {{action "moveToScreen" "1"}}>back</button>
+{{new-user moveToScreen=(action "moveToScreen")}}
+{{/if}}

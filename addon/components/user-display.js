@@ -8,9 +8,12 @@ export default Ember.Component.extend({
 
     actions:
     {
-	manageAuthorizations: function(user)
+	manageAuthorizationsUser: function(user)
 	{
-	    return this.sendAction('manageAuthorizations', user);
+	    //return this.sendAction('manageAuthorizations', user);
+	    Ember.Logger.log("in USER DISPLAY");
+	    const action = this.get("manageAuthorizationsUser");
+	    if(action){ action(user); }
 	}
     }
 });

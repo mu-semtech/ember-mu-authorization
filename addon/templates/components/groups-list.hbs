@@ -1,0 +1,12 @@
+<h5>User Groups</h5>
+<table>
+{{#each groups as |group|}}
+  <tr>
+    <td>{{group.name}}</td>
+    <td><button {{action "openGroupDetail" group}}>detail</button></td>
+    <td><button {{action "removeGroup" group}}>remove</button></td>
+  </tr>
+{{/each}}
+</table>
+
+<button {{action "openNewGroup"}}>new group</button>

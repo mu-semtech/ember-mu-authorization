@@ -6,6 +6,8 @@ export default Ember.Component.extend({
 
     classNames: ['group-display'],
 
+    store: Ember.inject.service('store'),
+
     // the group this component is displating
     group: void 0,
 
@@ -42,6 +44,55 @@ export default Ember.Component.extend({
     // @get('group').canWrite.length == 0
     noWriteAuthorizations: true,
 
+    // fire it up upon initialization
+    init: function()
+    {
+	this._super(...arguments);
+	this.initialCalculations();
+        this.calculateAddableUsers();
+	this.calculateAddableGroups();
+    },
+    
+    // do it again after inserting, just to be sure...
+    didInsertElement: function()
+    {
+	this.initialCalculations();
+        this.calculateAddableUsers();
+	this.calculateAddableGroups();
+    },
+        
+    // this will fill the users variable with all users
+    // on the system and the groups variable with all
+    // groups on the system
+    initialCalculations: function() {
+	var groupsPromise, userPromise;
+	userPromise = this.get('store').findAll('user');
+	userPromise.then((function(_this) {
+	    return function(users) {
+		var nusers;
+		nusers = [];
+		users.forEach(function(user, index) {
+		    return nusers.pushObject(user);
+		});
+		return _this.set('users', nusers);
+	    };
+	})(this));
+	userPromise;
+	groupsPromise = this.get('store').findAll('userGroup', {
+	    reload: true
+	});
+	return groupsPromise.then((function(_this) {
+	    return function(groups) {
+		var ngroups;
+		ngroups = [];
+		groups.forEach(function(group, index) {
+		    return ngroups.pushObject(group);
+		});
+		return _this.set('groups', ngroups);
+	    };
+	})(this));
+    },
+    
     willRender: function()
     {
 	this.calculateAddableUsers();
@@ -156,8 +207,11 @@ export default Ember.Component.extend({
       group.save();
       return this.calculateAddableSubGroups();
     },
-    manageAuthorizations: function() {
-      return this.sendAction('groupManageAuthorizations');
+    manageAuthorizationsGroup: function(group) {
+	//return this.sendAction('groupManageAuthorizations');
+	Ember.Logger.log("in GROUP DISPLAY");
+	const action = this.get("manageAuthorizationsGroup");
+	if(action){ action(group); }
     }
   }
 });

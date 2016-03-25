@@ -1,0 +1,18 @@
+{{#md-collection header='user groups' content=groups as |group|}}
+  {{#link-to 'userGroup' group.id class='collection-item'}}
+    {{group.name}}
+    
+  {{md-btn-submit icon='mdi-content-remove'
+    iconPosition='right'
+    text='remove'
+    action='removeGroup'
+    class='indigo yellow-text secondary-content'
+    actionArg=group
+  }}
+
+  {{/link-to}}
+{{/md-collection}}
+{{md-btn-submit icon='mdi-content-add'
+    iconPosition='right'
+    text='new group'
+    action='newGroup'}}

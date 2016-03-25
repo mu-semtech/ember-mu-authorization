@@ -6,6 +6,8 @@ export default Ember.Component.extend({
 
     classNames: ['authorization-list'],
 
+    store: Ember.inject.service('store'),
+
     authority: void 0,
     authenticadables: [],
     readAddables: [],
@@ -16,6 +18,35 @@ export default Ember.Component.extend({
     moreDeleteAddablesLeft: true,
     moreCreateAddablesLeft: true,
     moreWriteAddablesLeft: true,
+
+    init: function()
+    {
+	this._super(...arguments);
+	this.calculateAuthenticadables();
+	this.calculateAddables();
+    },
+
+    didInsertElement: function()
+    {
+	this.calculateAuthenticadables();
+	this.calculateAddables();
+    },
+    
+    calculateAuthenticadables: function()
+    {
+	var authPromise;
+	authPromise = this.get('store').findAll('authenticadable');
+	return authPromise.then((function(_this) {
+	    return function(auths) {
+		var authenticadables;
+		authenticadables = [];
+		auths.forEach(function(auth, index) {
+		    return authenticadables.pushObject(auth);
+		});
+		return _this.set('authenticadables', authenticadables);
+	    };
+	})(this));
+    },
     calculateAddables: function() {
 	var auths, createAddables, creates, deleteAddables, deletes;
 	var readAddables, reads, writeAddables, writes;
