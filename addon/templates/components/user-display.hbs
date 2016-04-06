@@ -1,65 +1,17 @@
 <h5>User: {{user.name}}</h5>
 <br>
 <h7>Id: {{user.id}}</h7>
-{{#md-collection content=user.userGroups
-header='Group(s)' as |group|}}
-   <div class='collection-item'>
-      {{group.name}}
-   </div>
-{{/md-collection}}
-{{#md-card-collapsible }}
-    {{#md-collapsible icon="mdi-image-filter-drama" title="can create's"}}
-      {{#if noCanCreates}}
-        <i>no can create authorizations for this user</i>
-      {{else}}
-        {{#md-collection content=user.canCreate as |create|}}
-          <div class='collection-item'>
-            {{create.name}}
-          </div>
-        {{/md-collection}}
-      {{/if}}
-    {{/md-collapsible}}
-    {{#md-collapsible icon="mdi-image-flash-on" title="can delete's"}}
-      {{#if noDeletes}}
-        <i>no can delete authorizations for this user</i>
-      {{else}}
-        {{#md-collection content=user.canDelete as |deleteauth|}}
-          <div class='collection-item'>
-            {{deleteauth.name}}
-          </div>
-        {{/md-collection}}
-      {{/if}}
-    {{/md-collapsible}}
-    {{#md-collapsible icon="mdi-image-remove-red-eye" title="can read's"}}
-      {{#if noReads}}
-        <i>no can read authorizations for this user</i>
-      {{else}}
-        {{#md-collection content=user.canRead as |read|}}
-          <div class='collection-item'>
-            {{read.name}}
-          </div>
-        {{/md-collection}}
-      {{/if}}
-    {{/md-collapsible}}
-    {{#md-collapsible icon="mdi-image-wb-cloudy" title="can write's"}}
-      {{#if noupdates}}
-        <i>no can write authorizations for this group</i>
-      {{else}}
-        {{#md-collection content=user.canWrite as |write|}}
-          <div class='collection-item'>
-            {{write.name}}
-          </div>
-        {{/md-collection}}
-      {{/if}}
-    {{/md-collapsible}}
-{{/md-card-collapsible}}
 
-{{md-btn-submit icon='mdi-content-send'
-iconPosition='right'
-text='manage authorizations'
-action='manageAuthorizations'
-class='indigo secondary-content'
-actionArg=user
-}}
+{{#collapsible-division header="groups" expanded=true}}
+  {{#if hasNoGroups}}
+    <i>{{user.name}} belongs to no group, you can add {{user.name}} to a group by going to the detail screen of the group to which you want to add him</i>
+  {{else}}
+    <table>
+    {{#each user.userGroups as |group|}}
+      <tr><td>{{group.name}}</td></tr>
+    {{/each}}
+    </table>
+  {{/if}}
+{{/collapsible-division}}
 
 <button {{action "manageAuthorizationsUser" user}}>manage authorizations</button>

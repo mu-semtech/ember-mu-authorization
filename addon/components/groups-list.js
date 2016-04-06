@@ -10,10 +10,12 @@ export default Ember.Component.extend({
 
     groups: [],
 
-    didInsertElement: function() {
+    calculateGroups: function() {
 	var groupPromise;
-	groupPromise = this.get('store').query('userGroup', {});
-	return groupPromise.then((function(_this) {
+	
+	groupPromise = this.get('store').query('userGroup', { reload: true });
+
+	groupPromise.then((function(_this) {
 	    return function(groupslist) {
 		var ngroups;
 		ngroups = [];
@@ -23,6 +25,12 @@ export default Ember.Component.extend({
 		return _this.set('groups', ngroups);
 	    };
 	})(this));
+
+	return groupPromise;
+    },
+
+    didInsertElement: function() {
+	return this.calculateGroups();
     },
 
     actions: {
@@ -31,7 +39,11 @@ export default Ember.Component.extend({
 	    if (action) { action() }
 	},
 	removeGroup: function(group) {
-	    group.destroyRecord();
+	    return group.destroyRecord().then((function(_this) {
+		return function() {
+		    return _this.calculateGroups();
+		};
+	    })(this));
 	},
 	openGroupDetail: function(group) {
 	    const action = this.get("openGroupDetail");

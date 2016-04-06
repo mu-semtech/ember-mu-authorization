@@ -6,11 +6,16 @@ export default Ember.Component.extend({
 
     classNames: ['user-display'],
 
+    hasNoGroups: Ember.computed('user',
+				function()
+				{
+				    return((this.get('user.userGroups.length')) === 0);
+				}),
+
     actions:
     {
 	manageAuthorizationsUser: function(user)
 	{
-	    //return this.sendAction('manageAuthorizations', user);
 	    Ember.Logger.log("in USER DISPLAY");
 	    const action = this.get("manageAuthorizationsUser");
 	    if(action){ action(user); }

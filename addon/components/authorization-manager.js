@@ -38,6 +38,10 @@ export default Ember.Component.extend({
 	return (this.get('activeScreen')==="6");
     }),
 
+    isScreen7Active: Ember.computed('activeScreen', function(){
+	return (this.get('activeScreen')==="7");
+    }),
+
 
     actions:
     {

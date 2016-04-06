@@ -1,0 +1,8 @@
+<div class="collapsible-division" style="border:1px solid black; width:100%;">
+
+<p class="collapsible-division-header" style="border:1px solid black; widthL100%;text-indent:25px;" {{action "toggleExpanded"}}>{{header}}</p>
+
+{{#if expanded}}
+{{yield}}
+{{/if}}
+</div>

@@ -30,19 +30,6 @@ export default Ember.Component.extend({
     
     // addableSubGroups.length ==0
     noMoreAddableSubGroups: true,
-    
-    // AUTHORIZATION SECTION
-    // @get('group').canRead.length == 0
-    noReadAuthorizations: true,
-    
-    // @get('group').canDelete.length == 0
-    noDeleteAuthroizations: true,
-    
-    // @get('group').canCreate.length ==0
-    noCreateAuthorizations: true,
-    
-    // @get('group').canWrite.length == 0
-    noWriteAuthorizations: true,
 
     // fire it up upon initialization
     init: function()
@@ -74,7 +61,8 @@ export default Ember.Component.extend({
 		users.forEach(function(user, index) {
 		    return nusers.pushObject(user);
 		});
-		return _this.set('users', nusers);
+		_this.set('users', nusers);
+		_this.calculateAddableUsers();
 	    };
 	})(this));
 	userPromise;
@@ -88,7 +76,8 @@ export default Ember.Component.extend({
 		groups.forEach(function(group, index) {
 		    return ngroups.pushObject(group);
 		});
-		return _this.set('groups', ngroups);
+		_this.set('groups', ngroups);
+		_this.calculateAddableGroups();
 	    };
 	})(this));
     },
@@ -168,14 +157,14 @@ export default Ember.Component.extend({
     return pgl.addObject(group);
   },
   actions: {
-    toggleUserPanel: function() {
-      this.calculateAddableUsers();
-      if (!this.get('active') === true) {
-        return this.set('active', true);
-      } else {
-        return this.set('active', false);
-      }
-    },
+    // toggleUserPanel: function() {
+    //   this.calculateAddableUsers();
+    //   if (!this.get('active') === true) {
+    //     return this.set('active', true);
+    //   } else {
+    //     return this.set('active', false);
+    //   }
+    // },
     removeUser: function(user) {
       var group, users;
       Ember.Logger.log('removing user ' + user);

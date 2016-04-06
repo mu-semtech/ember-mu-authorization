@@ -10,10 +10,12 @@ export default Ember.Component.extend({
 
     users: [],
 
-    didInsertElement: function() {
+    calculateUsers: function() {
 	var userPromise;
+	
 	userPromise = this.get('store').query('user', {});
-	return userPromise.then((function(_this) {
+	
+	userPromise.then((function(_this) {
 	    return function(userList) {
 		var nusers;
 		nusers = [];
@@ -23,11 +25,21 @@ export default Ember.Component.extend({
 		return _this.set('users', nusers);
 	    };
 	})(this));
+
+	return userPromise;
+    },
+
+    didInsertElement: function() {
+	return this.calculateUsers();
     },
 
     actions: {
 	removeUser: function(user) {
-	    return user.destroyRecord();
+	    return user.destroyRecord().then((function(_this) {
+		return function() {
+		    return _this.calculateUsers();
+		};
+	    })(this));
 	},
 	openNewUser: function() {
 	    const action = this.get("openNewUser");
