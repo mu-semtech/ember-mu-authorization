@@ -53,7 +53,7 @@ export default Ember.Component.extend({
     // groups on the system
     initialCalculations: function() {
 	var groupsPromise, userPromise;
-	userPromise = this.get('store').findAll('user');
+	userPromise = this.get('store').findAll('muAuthorizationUser');
 	userPromise.then((function(_this) {
 	    return function(users) {
 		var nusers;
@@ -66,7 +66,7 @@ export default Ember.Component.extend({
 	    };
 	})(this));
 	userPromise;
-	groupsPromise = this.get('store').findAll('userGroup', {
+	groupsPromise = this.get('store').findAll('muAuthorizationUserGroup', {
 	    reload: true
 	});
 	return groupsPromise.then((function(_this) {

@@ -13,7 +13,7 @@ export default Ember.Component.extend({
     calculateUsers: function() {
 	var userPromise;
 	
-	userPromise = this.get('store').query('user', {});
+	userPromise = this.get('store').query('muAuthorizationUser', {});
 	
 	userPromise.then((function(_this) {
 	    return function(userList) {

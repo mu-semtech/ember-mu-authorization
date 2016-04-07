@@ -18,7 +18,7 @@ export default Ember.Component.extend({
 	    
 	    name = this.get('name');
 	    
-	    group = this.get('store').createRecord('userGroup', {
+	    group = this.get('store').createRecord('muAuthorizationUserGroup', {
 		name: name
 	    });
 	    

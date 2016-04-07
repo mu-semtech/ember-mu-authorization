@@ -2,17 +2,17 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
     name: DS.attr('string'),
-    users: DS.hasMany('user', {
+    users: DS.hasMany('muAuthorizationUser', {
 	async: true
     }),
-    grants: DS.hasMany('grant', {
+    grants: DS.hasMany('muAuthorizationGrant', {
 	async: true
     }),
-    subGroups: DS.hasMany('userGroup', {
+    subGroups: DS.hasMany('muAuthorizationUserGroup', {
 	async: true,
 	inverse: 'parentGroups'
     }),
-    parentGroups: DS.hasMany('userGroup', {
+    parentGroups: DS.hasMany('muAuthorizationUserGroup', {
 	async: true,
 	inverse: 'subGroups'
     })  

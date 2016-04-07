@@ -13,7 +13,7 @@ export default Ember.Component.extend({
     calculateGroups: function() {
 	var groupPromise;
 	
-	groupPromise = this.get('store').query('userGroup', { reload: true });
+	groupPromise = this.get('store').query('muAuthorizationUserGroup', { reload: true });
 
 	groupPromise.then((function(_this) {
 	    return function(groupslist) {
