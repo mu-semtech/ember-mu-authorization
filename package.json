@@ -1,6 +1,6 @@
 {
   "name": "mu-addon-authorization",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "adds a 'manage-authorizations' component",
   "directories": {
     "doc": "doc",
