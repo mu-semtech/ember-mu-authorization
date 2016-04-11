@@ -4,7 +4,7 @@ export default DS.Model.extend({
     accessTokens: DS.hasMany('access-token', {
 	async: true
     }),
-    authenticadables: DS.hasMany('authenticadable', {
+    authenticatables: DS.hasMany('authenticatable', {
 	async: true
     })
 });

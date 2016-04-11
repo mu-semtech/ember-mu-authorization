@@ -1,6 +1,6 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('authenticadable', 'Unit | Model | authenticadable', {
+moduleForModel('authenticatable', 'Unit | Model | authenticatable', {
   // Specify the other units that are required for this test.
   needs: []
 });

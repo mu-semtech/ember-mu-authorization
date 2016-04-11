@@ -16,7 +16,7 @@ export default Ember.Component.extend({
 
     addableGrantCollections: {},
 
-    authenticadables: [],
+    authenticatables: [],
 
     allGrants: [],
 
@@ -28,7 +28,7 @@ export default Ember.Component.extend({
     didInsertElement: function()
     {
 	var authPromise, grantPromise, tokenPromise;
-	authPromise = this.calculateAuthenticadables();
+	authPromise = this.calculateAuthenticatables();
 	authPromise.then((function(_this) {
 	    return function(result) {
 		return _this.recalculate();
@@ -45,7 +45,7 @@ export default Ember.Component.extend({
 	    return function(result) {
 		result.forEach(function(grant, index) {
 		    var authsPromise, tokensPromise;
-		    authsPromise = grant.get('authenticadables');
+		    authsPromise = grant.get('authenticatables');
 		    authsPromise.then(function(res) {
 			return _this.recalculate();
 		    });
@@ -65,18 +65,18 @@ export default Ember.Component.extend({
 	this.calculateGrantCollections();
     },
     
-    calculateAuthenticadables: function()
+    calculateAuthenticatables: function()
     {
     	var authPromise;
-    	authPromise = this.get('store').findAll('authenticadable');
+    	authPromise = this.get('store').findAll('authenticatable');
     	return authPromise.then((function(_this) {
     	    return function(auths) {
-    		var authenticadables;
-    		authenticadables = [];
+    		var authenticatables;
+    		authenticatables = [];
     		auths.forEach(function(auth, index) {
-    		    return authenticadables.pushObject(auth);
+    		    return authenticatables.pushObject(auth);
     		});
-    		return _this.set('authenticadables', authenticadables);
+    		return _this.set('authenticatables', authenticatables);
     	    };
     	})(this));
     },
@@ -111,14 +111,14 @@ export default Ember.Component.extend({
 	})(this));
     },
 
-    hasAccessTokenForAuthenticadable: function(tokenId, authenticadableId)
+    hasAccessTokenForAuthenticatable: function(tokenId, authenticatableId)
     {
 	var hasAccessToken = false;
 	
 	this.get('authority.grants').forEach(
 	    function(grant, index)
 	    {
-		var linksToAuthority = false, linksToAuthenticadable = false;
+		var linksToAuthority = false, linksToAuthenticatable = false;
 		var fa = grant.get('accessTokens').filter(function(t){
 		    if(t.get('id')===tokenId)
 		    {
@@ -126,8 +126,8 @@ export default Ember.Component.extend({
 		    }
 		    return false;
 		});
-		var fo = grant.get('authenticadables').filter(function(a){
-		    if(a.get('id')===authenticadableId)
+		var fo = grant.get('authenticatables').filter(function(a){
+		    if(a.get('id')===authenticatableId)
 		    {
 			return true;
 		    }
@@ -151,20 +151,20 @@ export default Ember.Component.extend({
 	grantCollections = [];
 	accessTokens.forEach((function(_this) {
 	    return function(accessToken, index) {
-		var addables, authenticadables, authority, members;
-		authenticadables = _this.get('authenticadables');
+		var addables, authenticatables, authority, members;
+		authenticatables = _this.get('authenticatables');
 		authority = _this.get('authority');
 		addables = void 0;
 		members = void 0;
 		members = [];
 		addables = [];
 
-		authenticadables.forEach(function(auth, i) {
+		authenticatables.forEach(function(auth, i) {
 		    var isMember;
 		    isMember = void 0;
 		    isMember = void 0;
 		    isMember = false;
-		    if(_this.hasAccessTokenForAuthenticadable(accessToken.get('id'),
+		    if(_this.hasAccessTokenForAuthenticatable(accessToken.get('id'),
 							      auth.get('id')))
 		    {
 			isMember = true;
@@ -194,16 +194,16 @@ export default Ember.Component.extend({
 	this.get('authority').save();
     },
 
-    getGrantFor: function(authenticadable, token) {
+    getGrantFor: function(authenticatable, token) {
     },
 
-    addGrantFor: function(authenticadable, token) {
+    addGrantFor: function(authenticatable, token) {
 	var grant;
 	var grants;
 	grants = this.get('allGrants');
 	grants.forEach((function(_this) {
 	    return function(grant, index) {
-		if (grant.get('accessTokens').contains(token) && grant.get('authenticadables').contains(authenticadable)) {
+		if (grant.get('accessTokens').contains(token) && grant.get('authenticatables').contains(authenticatable)) {
 		    _this.addGrantToAuthority(grant);
 		}
 		else
@@ -213,7 +213,7 @@ export default Ember.Component.extend({
 			grant = _this.get('store').createRecord('grant',{
 			});
 			grant.get('accessTokens').pushObject(token);
-			grant.get('authenticadables').pushObject(authenticadable);
+			grant.get('authenticatables').pushObject(authenticatable);
 			
 			grant.save().then((function(_this) {
 			    return function(gr) {
@@ -226,12 +226,12 @@ export default Ember.Component.extend({
 	})(this));
     },
 
-    removeGrant: function(authenticadable, token){
+    removeGrant: function(authenticatable, token){
 	var grants;
 	grants = this.get('allGrants');
 	grants.forEach((function(_this) {
 	    return function(grant, index) {
-		if (grant.get('accessTokens').contains(token) && grant.get('authenticadables').contains(authenticadable)) {
+		if (grant.get('accessTokens').contains(token) && grant.get('authenticatables').contains(authenticatable)) {
 
  		    var savePromise;
 
@@ -254,7 +254,7 @@ export default Ember.Component.extend({
 	})(this));
     },
     
-    __authenticadablesObserver__: Ember.observer('authority', 'authority.grants', 'authenticadables', 'accessTokens', 'grants', 'allGrants', 'allGrants.accessTokens', 'allGrants.authenticadables', function() {
+    __authenticatablesObserver__: Ember.observer('authority', 'authority.grants', 'authenticatables', 'accessTokens', 'grants', 'allGrants', 'allGrants.accessTokens', 'allGrants.authenticatables', function() {
 	return this.recalculate();
     }),
     actions: {

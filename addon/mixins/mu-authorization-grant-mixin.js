@@ -5,7 +5,7 @@ export default Ember.Mixin.create({
     accessTokens: DS.hasMany('access-token', {
 	async: true
     }),
-    authenticadables: DS.hasMany('authenticadable', {
+    authenticatables: DS.hasMany('authenticatable', {
 	async: true
     })
 });
