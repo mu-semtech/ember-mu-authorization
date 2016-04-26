@@ -1,1 +1,1 @@
-export { default } from 'mu-addon-authorization/components/group-display';
+export { default } from 'ember-mu-authorization/components/group-display';

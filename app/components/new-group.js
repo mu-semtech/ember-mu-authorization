@@ -1,1 +1,1 @@
-export { default } from 'mu-addon-authorization/components/new-group';
+export { default } from 'ember-mu-authorization/components/new-group';

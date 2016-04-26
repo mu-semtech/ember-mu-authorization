@@ -1,1 +1,1 @@
-export { default } from 'mu-addon-authorization/controllers/manage-user-authorizations';
+export { default } from 'ember-mu-authorization/controllers/manage-user-authorizations';

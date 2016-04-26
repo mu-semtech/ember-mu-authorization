@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'mu-addon-authorization'
+  name: 'ember-mu-authorization'
 };

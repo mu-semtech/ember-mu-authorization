@@ -1,1 +1,1 @@
-export { default } from 'mu-addon-authorization/components/collapsible-division';
+export { default } from 'ember-mu-authorization/components/collapsible-division';

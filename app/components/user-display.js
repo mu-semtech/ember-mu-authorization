@@ -1,1 +1,1 @@
-export { default } from 'mu-addon-authorization/components/user-display';
+export { default } from 'ember-mu-authorization/components/user-display';

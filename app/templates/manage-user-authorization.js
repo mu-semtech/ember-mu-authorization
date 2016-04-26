@@ -1,1 +1,1 @@
-export { default } from 'mu-addon-authorization/templates/manage-user-authorization';
+export { default } from 'ember-mu-authorization/templates/manage-user-authorization';
