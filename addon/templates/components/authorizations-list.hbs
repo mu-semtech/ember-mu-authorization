@@ -10,18 +10,18 @@
 <p>
 <table>
 {{#each coll.members as |member|}}
-<tr><td>{{member.name}}</td><td><button {{action "removeGrant" member coll.token}}>remove</button></td></tr>
+<tr><td>{{member.title}}</td><td><button {{action "removeGrant" member coll.token}}>remove</button></td></tr>
 {{/each}}
 </table>
 </p>
 </div>
 
 <div style="width:100%; border-top:1px solid black;">
-<h7>addable {{coll.token.name}} authorizations</h7>
+<h7>addable {{coll.token.title}} authorizations</h7>
 <p>
 <table>
 {{#each coll.addables as |addable|}}
-<tr><td>{{addable.name}}</td><td><button {{action "addGrant" addable coll.token}}>add</button></td></tr>
+<tr><td>{{addable.title}}</td><td><button {{action "addGrant" addable coll.token}}>add</button></td></tr>
 {{/each}}
 </table>
 </p>
