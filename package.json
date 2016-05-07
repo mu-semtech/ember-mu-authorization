@@ -1,5 +1,5 @@
 {
-  "name": "ember-mu-authorization",
+  "name": "authorization-ember-addon",
   "version": "0.1.6",
   "description": "Default ember component for mu-authorization-service. See http://mu.semte.ch/.",
   "directories": {
