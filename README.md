@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/ember-mu-authorization.svg)](https://badge.fury.io/js/ember-mu-authorization)
+
 # Mu-addon-authorization
 
 This README outlines the details of collaborating on this Ember addon.
